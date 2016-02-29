@@ -1,0 +1,28 @@
+PODS:
+  - Date (0.1.0)
+  - Nimble (3.1.0)
+  - Quick (0.8.0)
+
+DEPENDENCIES:
+  - Date (from `../`)
+  - Nimble (from `https://github.com/Quick/Nimble.git`, branch `master`)
+  - Quick (~> 0.8.0)
+
+EXTERNAL SOURCES:
+  Date:
+    :path: "../"
+  Nimble:
+    :branch: master
+    :git: https://github.com/Quick/Nimble.git
+
+CHECKOUT OPTIONS:
+  Nimble:
+    :commit: 1730543fcd8b7d7258a3270bb6d3118921d46f9d
+    :git: https://github.com/Quick/Nimble.git
+
+SPEC CHECKSUMS:
+  Date: 0f112b6700696179c64bd20aabf6e225262d2e3a
+  Nimble: eb2a9b164b9a3f16df6581c692a0bfced7d072a4
+  Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
+
+COCOAPODS: 0.39.0
