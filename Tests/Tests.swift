@@ -26,7 +26,7 @@ class DateSpec: QuickSpec {
                 expect(date.seconds._value) == nsdate.timeIntervalSinceReferenceDate
             }
 
-            it("has the same 'now'") {
+            it("has the same now") {
                 let date = Date()
                 let nsdate = NSDate()
                 expect(date.seconds._value).to(beCloseTo(nsdate.timeIntervalSinceReferenceDate, within: 0.001))
@@ -37,6 +37,14 @@ class DateSpec: QuickSpec {
                 expect(timeInterval.seconds._value) == NSTimeIntervalSince1970
             }
 
+            it("has the same unix epoch") {
+                expect(Date.UnixEpoch.seconds._value) == NSDate(timeIntervalSince1970: 0).timeIntervalSinceReferenceDate
+            }
+
+            it("has the same refrence date") {
+                expect(Date.ReferenceDate.seconds._value) == NSDate(timeIntervalSinceReferenceDate: 0).timeIntervalSinceReferenceDate
+            }
+
             it("has the same distant future") {
                 expect(Date.DistantFuture.seconds._value) == NSDate.distantFuture().timeIntervalSinceReferenceDate
             }
@@ -45,9 +53,19 @@ class DateSpec: QuickSpec {
                 expect(Date.DistantPast.seconds._value) == NSDate.distantPast().timeIntervalSinceReferenceDate
             }
 
-            it("has the same timeinterval since refernce date") {
+            it("has the same time interval since refernce date") {
                 let timeInterval: Time.Seconds = Date.UnixEpoch.timeIntervalSinceReferenceDate()
                 expect(timeInterval.seconds._value) == NSDate(timeIntervalSince1970: 0).timeIntervalSinceReferenceDate
+            }
+        }
+
+        describe("") {
+            it("") {
+                let earlierDate = Date(timeIntervalSinceNow: -10.Seconds)
+                let laterDate = Date(timeIntervalSinceNow: 10.Seconds)
+
+                expect(earlierDate > laterDate).to(beFalse())
+                expect(earlierDate < laterDate).to(beTrue())
             }
         }
 
@@ -61,11 +79,13 @@ class DateSpec: QuickSpec {
                 expect(1.Weeks) == 7.Days
             }
 
-            it("can be added") {
+            it("convert non whole units") {
                 expect(4.5.Minutes) == 270.Seconds
-                expect(4.5.Minutes) == 270.Seconds
+                expect(1.5.Days) == 3.Hours
             }
         }
+
+
 
         describe("Date Componets") {
             it("correctly converts to components and back again") {

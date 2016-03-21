@@ -34,10 +34,37 @@ extension TimeInterval {
         self.init(Double(value))
     }
 
+    /// TimeInterval is less than 0 exclusive
     public var isNegative: Bool {
-        return self._value.isSignMinus
+        return self._value.isSignMinus && self.isNotZero
     }
 
+    /// TimeInterval is greater than 0 exclusive
+    public var isPositive: Bool {
+        return !self._value.isSignMinus && self.isNotZero
+    }
+
+    /// TimeInterval is +0.0 or -0.0
+    public var isZero: Bool {
+        return self._value.isZero
+    }
+
+    /// TimeInterval is not +0.0 or -0.0
+    public var isNotZero: Bool {
+        return !self._value.isZero
+    }
+
+    public var roundUp: Self {
+        return self.dynamicType.init(ceil(self._value))
+    }
+
+    public var roundDown: Self {
+        return self.dynamicType.init(floor(self._value))
+    }
+
+    public var round: Self {
+        return self.dynamicType.init(rint(self._value))
+    }
     // FloatLiteralConverable
     public init(floatLiteral value: Double) {
         self.init(value)
